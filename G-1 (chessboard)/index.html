@@ -11,87 +11,129 @@
     <div class="container">
         <div class="papan">
             <div class="row-odd">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>6</div>
-                <div>7</div>
-                <div>8</div>
+                <div><span>1</span></div>
+                <div><span>2</span></div>
+                <div><span>3</span></div>
+                <div><span>4</span></div>
+                <div><span>5</span></div>
+                <div><span>6</span></div>
+                <div><span>7</span></div>
+                <div><span>8</span></div>
             </div>
             <div class="row-even">
-                <div>9</div>
-                <div>10</div>
-                <div>11</div>
-                <div>12</div>
-                <div>13</div>
-                <div>14</div>
-                <div>15</div>
-                <div>16</div>
+                <div><span>9</span></div>
+                <div><span>10</span></div>
+                <div><span>11</span></div>
+                <div><span>12</span></div>
+                <div><span>13</span></div>
+                <div><span>14</span></div>
+                <div><span>15</span></div>
+                <div><span>16</span></div>
             </div>
             <div class="row-odd">
-                <div>17</div>
-                <div>18</div>
-                <div>19</div>
-                <div>20</div>
-                <div>21</div>
-                <div>22</div>
-                <div>23</div>
-                <div>24</div>
+                <div><span>17</span></div>
+                <div><span>18</span></div>
+                <div><span>19</span></div>
+                <div><span>20</span></div>
+                <div><span>21</span></div>
+                <div><span>22</span></div>
+                <div><span>23</span></div>
+                <div><span>24</span></div>
             </div>
             <div class="row-even">
-                <div>25</div>
-                <div>26</div>
-                <div>27</div>
-                <div>28</div>
-                <div>29</div>
-                <div>30</div>
-                <div>31</div>
-                <div>32</div>
+                <div><span>25</span></div>
+                <div><span>26</span></div>
+                <div><span>27</span></div>
+                <div><span>28</span></div>
+                <div><span>29</span></div>
+                <div><span>30</span></div>
+                <div><span>31</span></div>
+                <div><span>32</span></div>
             </div>
             <div class="row-odd">
-                <div>33</div>
-                <div>34</div>
-                <div>35</div>
-                <div>36</div>
-                <div>37</div>
-                <div>38</div>
-                <div>39</div>
-                <div>40</div>
+                <div><span>33</span></div>
+                <div><span>34</span></div>
+                <div><span>35</span></div>
+                <div><span>36</span></div>
+                <div><span>37</span></div>
+                <div><span>38</span></div>
+                <div><span>39</span></div>
+                <div><span>40</span></div>
             </div>
             <div class="row-even">
-                <div>41</div>
-                <div>42</div>
-                <div>43</div>
-                <div>44</div>
-                <div>45</div>
-                <div>46</div>
-                <div>47</div>
-                <div>48</div>
+                <div><span>41</span></div>
+                <div><span>42</span></div>
+                <div><span>43</span></div>
+                <div><span>44</span></div>
+                <div><span>45</span></div>
+                <div><span>46</span></div>
+                <div><span>47</span></div>
+                <div><span>48</span></div>
             </div>
             <div class="row-odd">
-                <div>49</div>
-                <div>50</div>
-                <div>51</div>
-                <div>52</div>
-                <div>53</div>
-                <div>54</div>
-                <div>55</div>
-                <div>56</div>
+                <div><span>49</span></div>
+                <div><span>50</span></div>
+                <div><span>51</span></div>
+                <div><span>52</span></div>
+                <div><span>53</span></div>
+                <div><span>54</span></div>
+                <div><span>55</span></div>
+                <div><span>56</span></div>
             </div>
             <div class="row-even">
-                <div>57</div>
-                <div>58</div>
-                <div>59</div>
-                <div>60</div>
-                <div>61</div>
-                <div>62</div>
-                <div>63</div>
-                <div>64</div>
+                <div><span>57</span></div>
+                <div><span>58</span></div>
+                <div><span>59</span></div>
+                <div><span>60</span></div>
+                <div><span>61</span></div>
+                <div><span>62</span></div>
+                <div><span>63</span></div>
+                <div><span>64</span></div>
             </div>
         </div>
-        
     </div>
+
+    <script>
+        let rowOdd = document.querySelectorAll('.row-odd > div');
+        let rowEven = document.querySelectorAll('.row-even > div');
+        let divs = [...rowOdd, ...rowEven];
+        let number = 0;
+        let prev = [];
+        let random = () => {
+            number++;
+            if(number === 5){
+                let randomRange = Math.round(Math.random() * 63);
+                if(prev.length < 2) { 
+                    if(prev.length === 1) {
+                        divs[prev[0]].classList.remove('colored');
+                        if(prev[0] === randomRange){
+                            randomRange = Math.round(Math.random() * 63);
+                        }
+                        if(prev[0] !== randomRange) prev.push(randomRange);
+                        divs[prev[1]].classList.add('colored');
+                    }else{
+                        prev.push(randomRange);
+                        divs[prev[0]].classList.add('colored');
+                    }
+                     
+                    
+                }
+                else { 
+                    prev.shift(); 
+                    prev.push(randomRange);
+                    divs[prev[0]].classList.remove('colored');
+                    divs[prev[1]].classList.add('colored');
+
+                }
+                
+                console.log(prev);
+                console.log(prev.length)
+                number = 0;
+            }
+            requestAnimationFrame(random);
+        }
+
+        // random();
+    </script>
 </body>
 </html>
